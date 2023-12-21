@@ -3,6 +3,8 @@ import { Image } from 'astro:assets'
 
 import Layout from '~/layouts/Layout.astro'
 
+import Lighthouse from '~/components/Lighthouse.astro'
+
 import logo from '~/assets/logo.png'
 import icon from '~/assets/icon.png'
 import bookmarkSvg from '~/assets/icons/bookmark.svg?raw'
@@ -17,15 +19,9 @@ const title = '2GETHER Lighthouse'
 	socialUrl={Astro.site}
 >
 
-	<main>
-		<!-- <div class="background">
-			<Image
-				src={ background }
-				alt={ `Background illustration for ${ title }` }
-				width={ 2560 } // 1440p
-			/>
-		</div> -->
+	<Lighthouse />
 
+	<main>
 		<div class="content">
 
 			<div class="brand-logo">
@@ -65,7 +61,7 @@ const title = '2GETHER Lighthouse'
 		position: relative;
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
+		justify-content: flex-end;
 		align-items: center;
 		width: 100%;
 		height: 100%;
@@ -81,23 +77,6 @@ const title = '2GETHER Lighthouse'
 			&:hover, &:focus {
 				color: inherit;
 				text-decoration: underline;
-			}
-		}
-
-		.background {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			overflow: hidden;
-			z-index: -1;
-
-			img {
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
-				object-position: 50% 0; // top center
 			}
 		}
 
