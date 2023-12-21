@@ -34,11 +34,11 @@ const {
 			<div class="sub-container power-button-container">
 				<slot name="power-button" />
 			</div>
-			<div class="sub-container play-button-container">
-				<slot name="play-button" />
-			</div>
 			<div class="sub-container volume-button-container">
 				<slot name="volume-button" />
+			</div>
+			<div class="sub-container play-button-container">
+				<slot name="play-button" />
 			</div>
 		</div>
 	</div>
@@ -134,7 +134,7 @@ const {
 					border-radius: 50%;
 				}
 
-				.play-button-container {
+				.volume-button-container {
 					// Small container for the volume button
 					$top: 49%;
 					$bottom: 39.7%;
@@ -147,7 +147,7 @@ const {
 					border-radius: 50%;
 				}
 
-				.volume-button-container {
+				.play-button-container {
 					// Small container for the volume button
 					$top: 64%;
 					$bottom: 24.5%;
