@@ -4,22 +4,24 @@ import Layout from '~/layouts/Layout.astro'
 import TV from '~/components/TV.astro'
 
 const title = '2GETHER Lighthouse TV'
+const videoYoutubeId = 'dQw4w9WgXcQ'
+const videoTitle = 'Rick Astley - Never Gonna Give You Up (Official Music Video)'
 ---
 
 <Layout
-	title={ title }
+	title={title}
 	lang="en"
 	socialUrl={Astro.site}
 >
 
 	<TV>
 		<iframe
-			src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&disablekb=1&loop=1&rel=0&enablejsapi=1"
+			src={`https://www.youtube.com/embed/${videoYoutubeId}?autoplay=1&controls=0&disablekb=1&loop=1&rel=0&enablejsapi=1`}
 			width="100%"
 			height="100%"
 			class="video"
 			id="video"
-			title="Rick Astley - Never Gonna Give You Up (Official Music Video)"
+			title={videoTitle}
 			frameborder="0"
 			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 			allowfullscreen
