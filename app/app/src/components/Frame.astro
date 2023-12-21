@@ -1,0 +1,61 @@
+---
+interface Props
+{
+	id?: string
+	class?: string
+	style?: string
+}
+
+const {
+	id = '',
+	class: className = '',
+	style = '',
+} = Astro.props
+---
+
+<div id={id} class={'wrapper' + (className ? ` ${className}` : '')} style={style}>
+	<div class="frame">
+		<div class="image-wrapper">
+			<div class="image-placeholder"></div>
+		</div>
+	</div>
+</div>
+
+<style lang="scss">
+	.wrapper {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		max-width: 80vw;
+		top: 20px;
+		right: 20px;
+		overflow: hidden;
+	}
+
+	.frame {
+		position: relative;
+		display: block;
+		background: linear-gradient(180deg, #00f6ff, #00aeff, #9600ff);
+		width: 100%;
+		padding: 20px;
+		box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+		border-radius: 5px;
+		overflow: hidden;
+
+		.image-wrapper {
+			position: relative;
+			display: block;
+			width: 100%;
+			aspect-ratio: 16 / 9;
+			box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+			border-radius: 5px;
+			overflow: hidden;
+
+			.image-placeholder {
+				background: #ffffff;
+				width: 100%;
+				height: 100%;
+			}
+		}
+	}
+</style>
