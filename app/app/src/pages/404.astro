@@ -10,6 +10,7 @@ import logo from '~/assets/logo.png'
 import icon from '~/assets/icon.png'
 import bookmarkSvg from '~/assets/icons/bookmark.svg?raw'
 import discordSvg from '~/assets/icons/discord.svg?raw'
+import arrowDownSvg from '~/assets/icons/arrow-down.svg?raw'
 
 const title = '2GETHER Lighthouse'
 ---
@@ -53,19 +54,34 @@ const title = '2GETHER Lighthouse'
 						<Fragment set:html={ discordSvg } />
 						Join our Discord
 					</a>
+					<a href="#scroll-down" class="button" id="scroll-down">
+						<Fragment set:html={ arrowDownSvg } />
+						Look at the TV
+					</a>
 				</div>
 
 			</div>
 
 		</section>
 
-		<section class="tv">
+		<section class="tv" id="tv-section">
 			<SectionTV />
 		</section>
 
 	</main>
 
 </Layout>
+
+<script>
+	// Scroll to TV
+	const scrollDown = document.getElementById('scroll-down')
+	scrollDown.addEventListener('click', event =>
+		{
+			event.preventDefault()
+			const tvSection = document.getElementById('tv-section')
+			tvSection.scrollIntoView({ behavior: 'smooth' })
+		})
+</script>
 
 <style lang="scss">
 	main {
