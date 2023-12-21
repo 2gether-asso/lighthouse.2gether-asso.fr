@@ -4,7 +4,7 @@ import { Image } from 'astro:assets'
 import Layout from '~/layouts/Layout.astro'
 
 import Lighthouse from '~/components/Lighthouse.astro'
-import TV from '~/components/TV.astro'
+import SectionTV from '~/components/SectionTV.astro'
 
 import logo from '~/assets/logo.png'
 import icon from '~/assets/icon.png'
@@ -20,49 +20,61 @@ const title = '2GETHER Lighthouse'
 	socialUrl={Astro.site}
 >
 
-	<Lighthouse />
-
 	<main>
-		<div class="content">
 
-			<div class="frame">
-				<TV />
+		<section class="lighthouse">
+
+			<Lighthouse />
+
+			<div class="content">
+
+				<div class="brand-logo">
+					<Image
+						src={ logo }
+						alt={ title }
+						width={ 900 }
+						class={ 'logo' }
+					/>
+					<Image
+						src={ icon }
+						alt={ title }
+						height={ 45 }
+						class={ 'logo-small' }
+					/>
+					<h1>{ title }</h1>
+				</div>
+
+				<div class="buttons">
+					<a href="https://2gether-asso.fr" class="button">
+						<Fragment set:html={ bookmarkSvg } />
+						Visit our website
+					</a>
+					<a href="https://discord.2gether-asso.fr" class="button">
+						<Fragment set:html={ discordSvg } />
+						Join our Discord
+					</a>
+				</div>
+
 			</div>
 
-			<div class="brand-logo">
-				<Image
-					src={ logo }
-					alt={ title }
-					width={ 900 }
-					class={ 'logo' }
-				/>
-				<Image
-					src={ icon }
-					alt={ title }
-					height={ 45 }
-					class={ 'logo-small' }
-				/>
-				<h1>{ title }</h1>
-			</div>
+		</section>
 
-			<div class="buttons">
-				<a href="https://2gether-asso.fr" class="button">
-					<Fragment set:html={ bookmarkSvg } />
-					Visit our website
-				</a>
-				<a href="https://discord.2gether-asso.fr" class="button">
-					<Fragment set:html={ discordSvg } />
-					Join our Discord
-				</a>
-			</div>
+		<section class="tv">
+			<SectionTV />
+		</section>
 
-		</div>
 	</main>
 
 </Layout>
 
 <style lang="scss">
 	main {
+		position: relative;
+		height: 100%;
+		overflow-y: auto;
+	}
+
+	.lighthouse {
 		position: relative;
 		display: flex;
 		flex-direction: column;
