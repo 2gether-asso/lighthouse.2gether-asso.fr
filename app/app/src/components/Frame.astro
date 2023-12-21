@@ -1,4 +1,8 @@
 ---
+import { Image } from 'astro:assets'
+
+import tv from '~/assets/tv.png'
+
 interface Props
 {
 	id?: string
@@ -13,48 +17,91 @@ const {
 } = Astro.props
 ---
 
-<div id={id} class={'wrapper' + (className ? ` ${className}` : '')} style={style}>
-	<div class="frame">
-		<div class="image-wrapper">
-			<div class="image-placeholder"></div>
+<div class="frame">
+	<div class="background">
+		<Image
+			src={tv}
+			alt="Frame TV background"
+		/>
+	</div>
+	<div class="content">
+		<div class="wrapper">
+			<div class="wrapper2">
+				<div class="box">
+					<slot />
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
 
 <style lang="scss">
-	.wrapper {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		max-width: 80vw;
-		top: 20px;
-		right: 20px;
-		overflow: hidden;
-	}
-
 	.frame {
 		position: relative;
-		display: block;
-		background: linear-gradient(180deg, #00f6ff, #00aeff, #9600ff);
-		width: 100%;
-		padding: 20px;
-		box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
-		border-radius: 5px;
-		overflow: hidden;
+		min-height: 100px;
+		aspect-ratio: 16 / 9;
 
-		.image-wrapper {
-			position: relative;
-			display: block;
+		.background {
+			position: absolute;
+			top: 0;
+			left: 0;
 			width: 100%;
+			height: 100%;
 			aspect-ratio: 16 / 9;
-			box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-			border-radius: 5px;
 			overflow: hidden;
+			z-index: 1;
 
-			.image-placeholder {
-				background: #ffffff;
+			img {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
 				width: 100%;
 				height: 100%;
+				object-fit: cover;
+			}
+		}
+
+		.content {
+			// Large full-width container
+			position: relative;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			width: 100%;
+			height: 100%;
+
+			.wrapper {
+				// 16:9 ratio large wrapper
+				position: relative;
+				min-width: 100%;
+				box-sizing: border-box;
+				aspect-ratio: 16 / 9;
+
+				.wrapper2 {
+					// Small container for the TV screen
+					position: relative;
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					align-items: center;
+					$top: 17.8%;
+					$bottom: 23.8%;
+					$left: 22.2%;
+					$right: 33.0%;
+					top: $top;
+					left: $left;
+					width: calc(100% - $left - $right);
+					height: calc(100% - $top - $bottom);
+
+					.box {
+						// 16:9 ratio small wrapper
+						flex-grow: 1;
+						flex-shrink: 0;
+						aspect-ratio: 16 / 9;
+					}
+				}
 			}
 		}
 	}
