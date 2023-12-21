@@ -24,10 +24,10 @@ const {
 			alt="Frame TV background"
 		/>
 	</div>
-	<div class="content">
-		<div class="wrapper">
-			<div class="wrapper2">
-				<div class="box">
+	<div class="container">
+		<div class="large-wrapper">
+			<div class="screen-container">
+				<div class="wrapper">
 					<slot />
 				</div>
 			</div>
@@ -63,7 +63,7 @@ const {
 			}
 		}
 
-		.content {
+		.container {
 			// Large full-width container
 			position: relative;
 			display: flex;
@@ -74,14 +74,14 @@ const {
 			height: 100%;
 			pointer-events: auto;
 
-			.wrapper {
+			.large-wrapper {
 				// 16:9 ratio large wrapper
 				position: relative;
 				min-width: 100%;
 				box-sizing: border-box;
 				aspect-ratio: 16 / 9;
 
-				.wrapper2 {
+				.screen-container {
 					// Small container for the TV screen
 					position: relative;
 					display: flex;
@@ -97,7 +97,7 @@ const {
 					width: calc(100% - $left - $right);
 					height: calc(100% - $top - $bottom);
 
-					.box {
+					.wrapper {
 						// 16:9 ratio small wrapper
 						flex-grow: 1;
 						flex-shrink: 0;
