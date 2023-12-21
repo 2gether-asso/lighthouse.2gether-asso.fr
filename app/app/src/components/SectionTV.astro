@@ -50,6 +50,17 @@ const videoTitle = 'Rick Astley - Never Gonna Give You Up (Official Music Video)
 		{
 			// Playing
 			video.classList.add('initialized')
+			powerButton.classList.add('on')
+		}
+
+		// if muted, mute button should be on
+		if (event.isMuted())
+		{
+			muteButton.classList.add('on')
+		}
+		else
+		{
+			muteButton.classList.remove('on')
 		}
 	}
 
@@ -70,11 +81,13 @@ const videoTitle = 'Rick Astley - Never Gonna Give You Up (Official Music Video)
 			{
 				ytplayer.pauseVideo()
 				console.log('paused')
+				powerButton.classList.remove('on')
 			}
 			else
 			{
 				ytplayer.playVideo()
 				console.log('playing')
+				powerButton.classList.add('on')
 			}
 		}
 
@@ -84,11 +97,13 @@ const videoTitle = 'Rick Astley - Never Gonna Give You Up (Official Music Video)
 			{
 				ytplayer.unMute()
 				console.log('unmuted')
+				muteButton.classList.remove('on')
 			}
 			else
 			{
 				ytplayer.mute()
 				console.log('muted')
+				muteButton.classList.add('on')
 			}
 		}
 
@@ -114,5 +129,21 @@ const videoTitle = 'Rick Astley - Never Gonna Give You Up (Official Music Video)
 		height: 100%;
 		cursor: pointer;
 		user-select: none;
+	}
+
+	.power-button {
+		background-color: #f002;
+
+		&.on {
+			background-color: #0f02;
+		}
+	}
+
+	.mute-button {
+		background-color: transparent;
+
+		&.on {
+			background-color: #0002;
+		}
 	}
 </style>
