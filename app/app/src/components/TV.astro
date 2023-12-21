@@ -26,10 +26,19 @@ const {
 	</div>
 	<div class="container">
 		<div class="large-wrapper">
-			<div class="screen-container">
+			<div class="sub-container screen-container">
 				<div class="wrapper">
 					<slot />
 				</div>
+			</div>
+			<div class="sub-container power-button-container">
+				<slot name="power-button" />
+			</div>
+			<div class="sub-container play-button-container">
+				<slot name="play-button" />
+			</div>
+			<div class="sub-container volume-button-container">
+				<slot name="volume-button" />
 			</div>
 		</div>
 	</div>
@@ -81,9 +90,14 @@ const {
 				box-sizing: border-box;
 				aspect-ratio: 16 / 9;
 
+				.sub-container {
+					// Sub container for TV screen components
+					position: absolute;
+				}
+
 				.screen-container {
 					// Small container for the TV screen
-					position: relative;
+					position: absolute;
 					display: flex;
 					flex-direction: column;
 					justify-content: center;
@@ -103,6 +117,45 @@ const {
 						flex-shrink: 0;
 						aspect-ratio: 16 / 9;
 					}
+				}
+
+				.power-button-container {
+					// Small container for the power button
+					$top: 71%;
+					$bottom: 25%;
+					$left: 72.5%;
+					$right: 25.4%;
+					top: $top;
+					left: $left;
+					width: calc(100% - $left - $right);
+					height: calc(100% - $top - $bottom);
+					border-radius: 50%;
+				}
+
+				.play-button-container {
+					// Small container for the volume button
+					$top: 49%;
+					$bottom: 39.7%;
+					$left: 75.6%;
+					$right: 17.8%;
+					top: $top;
+					left: $left;
+					width: calc(100% - $left - $right);
+					height: calc(100% - $top - $bottom);
+					border-radius: 50%;
+				}
+
+				.volume-button-container {
+					// Small container for the volume button
+					$top: 64%;
+					$bottom: 24.5%;
+					$left: 75.6%;
+					$right: 17.8%;
+					top: $top;
+					left: $left;
+					width: calc(100% - $left - $right);
+					height: calc(100% - $top - $bottom);
+					border-radius: 50%;
 				}
 			}
 		}
