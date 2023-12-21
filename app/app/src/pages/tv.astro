@@ -14,22 +14,99 @@ const title = '2GETHER Lighthouse TV'
 
 	<TV>
 		<iframe
-			src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&disablekb=1&loop=1&rel=0"
+			src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&disablekb=1&loop=1&rel=0&enablejsapi=1"
 			width="100%"
 			height="100%"
 			class="video"
+			id="video"
 			title="Rick Astley - Never Gonna Give You Up (Official Music Video)"
 			frameborder="0"
 			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 			allowfullscreen
 		></iframe>
+
+		<Fragment slot="power-button">
+			<div class="power-button" id="power-button"></div>
+		</Fragment>
+
+		<Fragment slot="play-button">
+			<div class="play-pause-button" id="play-pause-button"></div>
+		</Fragment>
+
+		<Fragment slot="volume-button">
+			<div class="mute-button" id="mute-button"></div>
+		</Fragment>
 	</TV>
 
 </Layout>
+
+<script is:inline>
+	const powerButton = document.getElementById('power-button')
+	const playPauseButton = document.getElementById('play-pause-button')
+	const muteButton = document.getElementById('mute-button')
+
+	function onPlayerReady(event)
+	{
+		// Autoplay with reduced volume
+		event.target.playVideo()
+		event.target.setVolume(40)
+	}
+
+	let ytplayer
+	function onYouTubeIframeAPIReady()
+	{
+		ytplayer = new YT.Player('video', {
+			events: {
+				onReady: onPlayerReady,
+			}
+		})
+	}
+
+	const togglePlayPause = () =>
+		{
+			if (ytplayer.getPlayerState() === 1)
+			{
+				ytplayer.pauseVideo()
+				console.log('paused')
+			}
+			else
+			{
+				ytplayer.playVideo()
+				console.log('playing')
+			}
+		}
+
+	const toggleMute = () =>
+		{
+			if (ytplayer.isMuted())
+			{
+				ytplayer.unMute()
+				console.log('unmuted')
+			}
+			else
+			{
+				ytplayer.mute()
+				console.log('muted')
+			}
+		}
+
+	powerButton.addEventListener('click', togglePlayPause)
+	playPauseButton.addEventListener('click', togglePlayPause)
+	muteButton.addEventListener('click', toggleMute)
+</script>
+<script is:inline src="https://www.youtube.com/iframe_api" async></script>
 
 <style lang="scss">
 	.video {
 		pointer-events: none;
 		user-select: none;
+	}
+
+	.power-button,
+	.play-pause-button,
+	.mute-button {
+		width: 100%;
+		height: 100%;
+		cursor: pointer;
 	}
 </style>
