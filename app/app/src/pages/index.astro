@@ -123,11 +123,11 @@ const title = '2GETHER Lighthouse'
 <script>
 	// Scroll to TV
 	const scrollDown = document.getElementById('scroll-down')
-	scrollDown.addEventListener('click', event =>
+	scrollDown?.addEventListener('click', event =>
 		{
 			event.preventDefault()
 			const tvSection = document.getElementById('tv-section')
-			tvSection.scrollIntoView({ behavior: 'smooth' })
+			tvSection?.scrollIntoView({ behavior: 'smooth' })
 		})
 </script>
 
