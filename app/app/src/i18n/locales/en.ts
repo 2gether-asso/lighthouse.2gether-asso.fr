@@ -3,6 +3,7 @@ const defaultLocale =
 	'What is {0}?',
 	'Visit our website',
 	'Join our Discord',
+	'Look at the TV',
 ] as const
 
 type Keys = typeof defaultLocale[number]
