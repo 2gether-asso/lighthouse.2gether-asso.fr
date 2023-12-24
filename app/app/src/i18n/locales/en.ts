@@ -4,6 +4,8 @@ const defaultLocale =
 	'Visit our website',
 	'Join our Discord',
 	'Look at the TV',
+	'You are tired of waiting for official announcements and want to have clues about the next advances of 2GETHER? It\'s possible with 2GETHER LIGHTHOUSE:',
+	'Access the secure direct line to the lighthouse and try to decrypt the transmissions to access exclusive content on 2GETHER!',
 ] as const
 
 type Keys = typeof defaultLocale[number]
