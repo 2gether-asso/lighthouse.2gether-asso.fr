@@ -3,6 +3,9 @@ import { Image } from 'astro:assets'
 
 import Layout from '~/layouts/Layout.astro'
 
+import { i18nFactory, getLocaleUrlList } from '~/i18n'
+const _ = i18nFactory(Astro.currentLocale as any)
+
 import Lighthouse from '~/components/Lighthouse.astro'
 import SectionTV from '~/components/SectionTV.astro'
 
@@ -13,6 +16,8 @@ import infoSvg from '~/assets/icons/info.svg?raw'
 import bookmarkSvg from '~/assets/icons/bookmark.svg?raw'
 import discordSvg from '~/assets/icons/discord.svg?raw'
 import arrowDownSvg from '~/assets/icons/arrow-down.svg?raw'
+import flagFRSvg from '~/assets/icons/flag-fr.svg?raw'
+import flagENSvg from '~/assets/icons/flag-en.svg?raw'
 
 const title = '2GETHER Lighthouse'
 ---
@@ -30,7 +35,7 @@ const title = '2GETHER Lighthouse'
 				<!-- Close -->
 			</div>
 			<div class="modal-content">
-				<h2>What is { title }?</h2>
+				<h2>{_('What is {0}?', title)}</h2>
 				<p>
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus cursus magna at libero tristique, faucibus ullamcorper orci volutpat. Integer aliquet nulla ut ante porttitor faucibus. Sed faucibus consectetur pellentesque. Proin malesuada purus vel posuere sollicitudin. Donec vel efficitur magna. Nullam vel convallis tortor. Sed eu scelerisque purus, vitae iaculis felis.
 				</p>
@@ -68,20 +73,39 @@ const title = '2GETHER Lighthouse'
 				<div class="buttons">
 					<a href="#info" class="button" id="info-button">
 						<Fragment set:html={ infoSvg } />
-						What is { title }?
+						{_('What is {0}?', title)}
 					</a>
 					<a href="https://2gether-asso.fr" class="button">
 						<Fragment set:html={ bookmarkSvg } />
-						Visit our website
+						{_('Visit our website')}
 					</a>
 					<a href="https://discord.2gether-asso.fr" class="button">
 						<Fragment set:html={ discordSvg } />
-						Join our Discord
+						{_('Join our Discord')}
 					</a>
 					<a href="#scroll-down" class="button" id="scroll-down">
 						<Fragment set:html={ arrowDownSvg } />
 						Look at the TV
 					</a>
+					{getLocaleUrlList(Astro.url, Astro.currentLocale).map(({ locale, url }) =>
+						{
+							const flagSvg =
+								locale === 'fr' ? flagFRSvg :
+								locale === 'en' ? flagENSvg :
+								null
+
+							return (
+								<a href={url} class="button">
+									{flagSvg
+										&& (
+											<Fragment set:html={ flagSvg } />
+										)
+										|| locale
+									}
+								</a>
+							)
+						})
+					}
 				</div>
 
 			</div>
@@ -108,7 +132,7 @@ const title = '2GETHER Lighthouse'
 </script>
 
 <script>
-	function addEventListenersModal(id)
+	function addEventListenersModal(id: string)
 	{
 		const button = document.getElementById(`${id}-button`)
 		const modal = document.getElementById(`${id}-modal`)
