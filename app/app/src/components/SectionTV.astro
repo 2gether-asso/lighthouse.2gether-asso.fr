@@ -13,7 +13,6 @@ const videoTitle = 'Rick Astley - Never Gonna Give You Up (Official Music Video)
 		class="video"
 		id="video"
 		title={videoTitle}
-		frameborder="0"
 		allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 		allowfullscreen
 	></iframe>
@@ -115,6 +114,7 @@ const videoTitle = 'Rick Astley - Never Gonna Give You Up (Official Music Video)
 
 <style lang="scss">
 	.video {
+		border: 0;
 		user-select: none;
 
 		&.initialized {
